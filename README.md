@@ -1,22 +1,24 @@
 # UWStudyCircle-Frontend
 
-## Project structure:
+## Project Structure
 
+```bash
 UWStudyCircle-Frontend/
 ├── package.json
 ├── main.js
 └── index.html
+```
 
 ## Installation
 
-## Clone this repository
+Clone this repository
 git clone https://github.com/Apeksha1999/UWStudyCircle-Frontend.git
-## Go into the repository
+Go into the repository
 cd UWStudyCircle-Frontend
-## Install npm
+Install npm
 https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
-## Install electron
+Install electron
 npm install electron --save-dev --save-exact
-## Run the app
+Run the app
 npm start
 
