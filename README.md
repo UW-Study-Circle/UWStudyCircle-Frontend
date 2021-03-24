@@ -1,11 +1,4 @@
-# Social Network Theme
-
-This is a website template based on the tutorial [Social Network Theme With Sass](https://www.youtube.com/playlist?list=PLillGF-Rfqba3xeEvDzIcUCxwMlGiewfV) from Traversy Media&trade;.
-
-The icons are from the Font Awesome&trade; [https://fontawesome.com/](https://fontawesome.com/) library.
-
-The images were downloaded from Pexels™ [https://www.pexels.com/](https://www.pexels.com/) - The best free stock photos & videos shared by talented creators.
-
+# UW STUDY CIRCLE
 ## Install Dependencies
 
 **1. Check if you have a recent version of [Node.js](https://nodejs.org/) (which comes bundled with [npm](https://www.npmjs.com/), a JavaScript package manager):**
