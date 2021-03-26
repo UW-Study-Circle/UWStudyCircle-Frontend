@@ -73,6 +73,7 @@
                     Accept: "application/json",
                 },
                 body: formDataJsonString,
+                credentials: 'include',
             };
 
             const response = await fetch(url, fetchOptions);
