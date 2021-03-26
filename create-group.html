@@ -6,32 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var maxField = 10; //Input fields increment limitation
-        var addButton = $('.add_button'); //Add button selector
-        var wrapper = $('.field_wrapper'); //Input field wrapper
-        var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button" title="Remove field"><h1>-</h1></a></div>'; //New input field html 
-        var x = 1; //Initial field counter is 1
-
-        //Once add button is clicked
-        $(addButton).click(function () {
-            //Check maximum number of input fields
-            if (x < maxField) {
-                x++; //Increment field counter
-                $(wrapper).append(fieldHTML); //Add field html
-            }
-        });
-
-        //Once remove button is clicked
-        $(wrapper).on('click', '.remove_button', function (e) {
-            e.preventDefault();
-            $(this).parent('div').remove(); //Remove field html
-            x--; //Decrement field counter
-        });
-    });
-</script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js">
     </script>
     
@@ -58,7 +32,7 @@ Enter availability
             </li>
     
             <li>
-                <a href="profiles.html">Group Screen</a>
+                <a href="profiles.html">Groups</a>
             </li>
     
             <li>
@@ -85,11 +59,11 @@ Enter availability
         <p class="lead">
             <i class="fas fa-user"></i> Let's get some information about your group
         </p>
-        <form class="form">     
+        <form class="form" action="http://127.0.0.1:6969/api/group/" id="groupForm" method="POST">     
             
             <div class="form-group">
                 <small class="form-text">Group Name</small>
-                <input type ="text" placeholder="Ex: CS506-SEC001" name="group name" required></textarea>
+                <input type ="text" placeholder="Ex: CS506-SEC001" name="groupname" required></textarea>
             </div>
 
             <div class="form-group">
@@ -98,27 +72,24 @@ Enter availability
             </div>
 
             <div class="form-group">
-                <small class="form-text">Your First Name</small>
-                <input type ="text" placeholder="First Name" name="firstN" required></textarea>
+                <small class="form-text">Group capacity</small>
+                <input type ="number" placeholder="max capacity" name="capacity" required></textarea>
             </div>
 
+         
+
             <div class="form-group">
-                <small class="form-text">Your Last Name</small>
-                <input type ="text" placeholder="Last Name" name="lastN" required></textarea>
+                <small class="form-text">Duration of group activities</small>
+                <input type ="number" placeholder="Ex: 3/2/21-3/7/21" name="duration" required></textarea>
             </div>
             
-            <div class="form-group">
-                <small class="form-text">Gender</small>
-                <input type="radio" name="gender" value="genderM" required>&nbsp; Male</textarea><br>
-                <input type="radio" name="gender" value="genderF">&nbsp; Female</textarea><br>
-                <input type="radio" name="gender" value="genderO">&nbsp; Other</textarea>
-            </div>
+          
             
             
 
             <div class="form-group">
                 <small class="form-text">Select which education level is this group relevant to</small> 
-                <select name="status" required>
+                <select name="level" required>
                     <option value="0">* Select level of education</option>
                     <option value="highschool">High school</option>
                     <option value="UnderFreshman">Undergraduate - Freshman</option>
@@ -134,7 +105,7 @@ Enter availability
             <div class="field_wrapper">
                 <div>
                     <small class="form-text">Course related to this group</small>
-                    <input type="text" name="field_name[]" value="" />
+                    <input type="text" name="courseinfo" value="" />
                     <a href="javascript:void(0);" class="add_button" title="Add field">
                         <h1>+</h1>
                     </a>
@@ -142,13 +113,15 @@ Enter availability
             </div>
             <div class="form-group">
                 <small class="form-text">Enter group visibility</small>
-                <input type="text" placeholder="public/private" name="visibility" />
+                <input type="text" placeholder="public/private" name="status" />
             </div>
             
             <input type="submit" class="btn btn-primary my-1" />
             <a class="btn btn-light my-1" href="dashboard.html">Go Back</a>
         </form>
     </section>
+
+    <script src="create-group.js" ></script>
 
 
 
