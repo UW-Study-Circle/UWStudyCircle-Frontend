@@ -18,7 +18,7 @@ async function renderPage() {
     document.getElementById("username").innerHTML = "Username: " + profile["username"];
     document.getElementById("firstname").innerHTML = "First Name: "+ profile["firstname"];
     document.getElementById("lastname").innerHTML = "Last Name: "+ profile["lastname"];
-    document.getElementById("lastname").innerHTML = "Gender: "+ profile["lastname"];
+    document.getElementById("gender").innerHTML = "Gender: "+ profile["gender"];
     document.getElementById("bday").innerHTML = "Birthday "+ profile["bday"];
     document.getElementById("email").innerHTML = "Email: "+ profile["email"];
     document.getElementById("phonenumber").innerHTML = "Phone: "+ profile["phonenumber"];
