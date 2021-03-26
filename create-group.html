@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var maxField = 10; //Input fields increment limitation
+        var addButton = $('.add_button'); //Add button selector
+        var wrapper = $('.field_wrapper'); //Input field wrapper
+        var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button" title="Remove field"><h1>-</h1></a></div>'; //New input field html 
+        var x = 1; //Initial field counter is 1
+
+        //Once add button is clicked
+        $(addButton).click(function () {
+            //Check maximum number of input fields
+            if (x < maxField) {
+                x++; //Increment field counter
+                $(wrapper).append(fieldHTML); //Add field html
+            }
+        });
+
+        //Once remove button is clicked
+        $(wrapper).on('click', '.remove_button', function (e) {
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
+    });
+</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js">
+    </script>
+    
+    <link rel="stylesheet" href="bundle.css">
+    <link href="images/logo.png" rel="icon" type="image/x-icon" />
+    <title>Welcome to UW Study Circle</title>
+</head>
+<!--
+Select and enter courses enrolled in.
+Enter a bio
+Upload a profile picture
+Select subjects interested in.
+Select level of study (high school, undergraduate-junior, senior, etc.)
+Enter education background
+Enter employment background (optional)
+Enter availability
+-->
+<body>
+    <nav class="navbar bg-dark">
+        <h1>UW Study Circle</h1>
+        <ul>
+            <li>
+                <a href="dashboard.html">Dashboard</a>
+            </li>
+    
+            <li>
+                <a href="profiles.html">Group Screen</a>
+            </li>
+    
+            <li>
+                |
+                <a href="create-profile.html">
+                    <i class="fas fa-user"></i>
+                    <span class="hide-sm">Profile</span>
+                </a>
+            </li>
+    
+            <li>
+                <a href="login.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="hide-sm">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="container">
+        <h1 class="large text-primary">
+            Create your study group
+        </h1>
+        <p class="lead">
+            <i class="fas fa-user"></i> Let's get some information about your group
+        </p>
+        <form class="form">     
+            
+            <div class="form-group">
+                <small class="form-text">Group Name</small>
+                <input type ="text" placeholder="Ex: CS506-SEC001" name="group name" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <small class="form-text">Add a group description</small>
+                <input type ="text" placeholder="" name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <small class="form-text">Your First Name</small>
+                <input type ="text" placeholder="First Name" name="firstN" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <small class="form-text">Your Last Name</small>
+                <input type ="text" placeholder="Last Name" name="lastN" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <small class="form-text">Gender</small>
+                <input type="radio" name="gender" value="genderM" required>&nbsp; Male</textarea><br>
+                <input type="radio" name="gender" value="genderF">&nbsp; Female</textarea><br>
+                <input type="radio" name="gender" value="genderO">&nbsp; Other</textarea>
+            </div>
+            
+            
+
+            <div class="form-group">
+                <small class="form-text">Select which education level is this group relevant to</small> 
+                <select name="status" required>
+                    <option value="0">* Select level of education</option>
+                    <option value="highschool">High school</option>
+                    <option value="UnderFreshman">Undergraduate - Freshman</option>
+                    <option value="UnderSophmore">Undergraduate - Sophmore</option>
+                    <option value="UnderJunior">Undergraduate - Junior</option>
+                    <option value="UnderSenior">Undergraduate - Senior</option>
+                    <option value="Graduate">Graduate Student</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+
+            <div class="field_wrapper">
+                <div>
+                    <small class="form-text">Course related to this group</small>
+                    <input type="text" name="field_name[]" value="" />
+                    <a href="javascript:void(0);" class="add_button" title="Add field">
+                        <h1>+</h1>
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                <small class="form-text">Enter group visibility</small>
+                <input type="text" placeholder="public/private" name="visibility" />
+            </div>
+            
+            <input type="submit" class="btn btn-primary my-1" />
+            <a class="btn btn-light my-1" href="dashboard.html">Go Back</a>
+        </form>
+    </section>
+
+
+
+
+</body>
+
+</html>
