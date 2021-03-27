@@ -74,6 +74,19 @@ async function handleFormSubmit(event) {
         const responseData = await postFormDataAsJson({ url, formData });
 
         console.log({ responseData });
+        if (responseData["Success"])
+        {
+            window.location.href = 'profiles.html';
+        }
+
+        if (responseData["Duplicate"])
+        {
+            alert(responseData["Duplicate"]);
+        }
+        if (responseData["Error"])
+        {
+            alert(responseData["Error"]);
+        }
     } catch (error) {
         console.error(error);
     }
