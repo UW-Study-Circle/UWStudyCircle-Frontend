@@ -156,7 +156,20 @@
                 const responseData = await postFormDataAsJson({ url, formData });
 
                 console.log({ responseData });
-                window.location.href = 'login.html';
+                if (responseData["Success"])
+                {
+                    window.location.href = 'login.html';
+                }
+
+                if (responseData["Duplicate"])
+                {
+                    alert(responseData["Duplicate"]);
+                }
+                if (responseData["Error"])
+                {
+                    alert(responseData["Error"]);
+                }
+                
             } catch (error) {
                 console.error(error);
             }
