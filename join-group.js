@@ -42,7 +42,7 @@ for(var i=0; i<contentsArr.length; i++){
     }, false);
 };
 
-async function getGroupInfo(){
+async function getGroupInfo(){ 
     const url="http://127.0.0.1:6969/api/group/" + id;
     const fetchOptions = {
         method: "GET",

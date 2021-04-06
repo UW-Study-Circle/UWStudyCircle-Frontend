@@ -10,7 +10,7 @@
   float: left;
   padding: 0;
   margin: 0;
-  border: 1px solid black;
+  border: 1px solid gray;
 }
 .sidebar-right .title{
   font-size: 0px;
@@ -30,6 +30,6 @@
 #info{
   position: absolute;
 }
-.clicked{
-    border : 3px solid #000;
-}
+/*.clicked{
+    border : 3px solid #666;
+}*/
