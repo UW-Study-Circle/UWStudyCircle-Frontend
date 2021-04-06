@@ -37,7 +37,7 @@ async function getGroup() {
   let response = await fetch(url, fetchOptions);
   let data = await response.json();
   console.log(data);
-  console.log(data["Content"].length)
+  console.log(data["Content"].length);
   var root = document.getElementById("grouplist"); 
   for (i = 0, len = data["Content"].length, text = ""; i < len; i++) {
     
@@ -70,8 +70,9 @@ async function getGroup() {
     
     var aelem1 = document.createElement("a");
     aelem1.className = "btn btn-primary gr";
-    aelem1.href = "join-group.html";
+    aelem1.href = "join-group.html?id="+data["Content"][i]["id"]; //add group id to url
     aelem1.innerHTML = "Join Group";
+  
 
     elem.innerHTML = "Group Name: " + data["Content"][i]["groupname"];
     div2.appendChild(elem);

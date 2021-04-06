@@ -1,3 +1,4 @@
+
 // loop through each contents item and hides it
 
 function hideSideContent(){
@@ -12,6 +13,9 @@ hideSideContent();
 // show the 1st content item
 document.getElementsByClassName("contents")[0].style.display = "block";
 
+const queryURL = window.location.search;
+const urlParams = new URLSearchParams(queryURL);
+var id=urlParams.get("id");
 
 // collect title IDs into an iterable array
 var contentsArr = ["group-mem", "group-info"];
@@ -38,3 +42,21 @@ for(var i=0; i<contentsArr.length; i++){
     }, false);
 };
 
+async function getGroupInfo(){
+    const url="http://127.0.0.1:6969/api/group/" + id;
+    const fetchOptions = {
+        method: "GET",
+        credentials: 'include',
+    };
+ 
+    let response = await fetch(url, fetchOptions);
+    let data = await response.json();
+    var info = "";
+    Object.keys(data).forEach(function(key) {
+        info += key+" : " + data[key] + "<br>";
+      
+      })
+    document.getElementById("text-2").innerHTML = info;
+}
+
+getGroupInfo();
