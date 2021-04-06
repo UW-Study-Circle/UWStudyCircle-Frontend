@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js"></script>
+    <link rel="stylesheet" href="bundle.css">
+    <link rel="stylesheet" href="join-group.css">
+    <script src="logout.js" type="text/javascript"></script>
+    <link href="images/logo.png" rel="icon" type="image/x-icon" />
+    <title>Welcome to UW Study Circle</title>
+</head>
+
+<body>
+
+    <nav class="navbar bg-dark">
+        <h1>UW Study Circle</h1>
+        <ul>
+            <li>
+                <a href="dashboard.html">Dashboard</a>
+            </li>
+
+            <li>
+                <a href="profiles.html">Group Screen</a>
+            </li>
+
+            <li>
+                |
+                <a href="create-profile.html">
+                    <i class="fas fa-user"></i>
+                    <span class="hide-sm">Profile</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);" onclick=logout()>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="hide-sm">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <section class="container">
+        <a href="profiles.html" class="btn">Back to Profiles</a>
+
+        <div class="profile-grid my-1 gr">
+            <!-- main (chat space) -->
+            <div class="chatspace">
+                <!-- Education (this need to change!!!)-->
+                <div class="profile-edu bg-white p-2">
+                    <h2 class="text-primary">
+                        [Major Details Heading]
+                    </h2>
+
+                    <div>
+                        <h3>[Major details]</h3>
+                        <p>[Date/Tim etc]</p>
+                        <p>
+                            <strong>[Sub details]: </strong>xyz
+                        </p>
+                        <p>
+                            <strong>[Sub details]: </strong> bhfj
+                        </p>
+                        <p>
+                            <strong>Description </strong>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti
+                            inventore aliquam id ullam qui delectus sed deserunt facilis error blanditiis culpa illo!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- sidebar -->
+            <div class="sidebar-right">
+                <!-- Group Member / Group Info -->
+                <div class="title">
+                    <a href="#" class="btn btn-primary" id="group-mem">Group Member</a>
+                    <a href="#" class="btn btn-primary" id="group-info">Group Info</a>
+                </div>
+                <!-- Show Members / Show Info -->
+                <div class="side-content" id="show-content">
+                    <div class="contents" id="members">
+                        <h2 class="text" id="text-1">this is a member list</h2>
+                    </div>
+                    <div class="contents" id="info">
+                        <h2 class="text" id="text-2">this is info </h2>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  
+    <script src="bundle.js" async></script>
+    <script src="join-group.js"></script>
+
+</body>
+
+</html>

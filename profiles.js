@@ -70,7 +70,7 @@ async function getGroup() {
     
     var aelem1 = document.createElement("a");
     aelem1.className = "btn btn-primary gr";
-    aelem1.href = "profile.html";
+    aelem1.href = "join-group.html";
     aelem1.innerHTML = "Join Group";
 
     elem.innerHTML = "Group Name: " + data["Content"][i]["groupname"];
