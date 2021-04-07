@@ -32,6 +32,7 @@ $(document).ready(function () {
 */
 
     async function postFormDataAsJson({ url, formData }) {
+    console.log(formData);
     const plainFormData = Object.fromEntries(formData.entries());
     const formDataJsonString = JSON.stringify(plainFormData);
 
@@ -65,6 +66,7 @@ $(document).ready(function () {
 
 async function handleFormSubmit(event) {
     event.preventDefault();
+    console.log(event);
 
     const form = event.currentTarget;
     const url = form.action;
@@ -94,3 +96,4 @@ async function handleFormSubmit(event) {
 
 const exampleForm = document.getElementById("groupForm");
 exampleForm.addEventListener("submit", handleFormSubmit);
+
