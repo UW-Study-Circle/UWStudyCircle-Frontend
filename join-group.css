@@ -1,0 +1,35 @@
+.profile-grid.my-1.gr{
+  float: left;
+}
+/*.chatspace{
+
+}*/
+.sidebar-right{
+  height: 500px;
+  position: relative;
+  float: left;
+  padding: 0;
+  margin: 0;
+  border: 1px solid gray;
+}
+.sidebar-right .title{
+  font-size: 0px;
+}
+#group-mem{
+  margin: 0;
+}
+#group-info{
+  margin: 0;
+}
+#side-content{
+  position: relative;
+}
+#members{
+  position: absolute;
+}
+#info{
+  position: absolute;
+}
+/*.clicked{
+    border : 3px solid #666;
+}*/
