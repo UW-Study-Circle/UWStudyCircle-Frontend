@@ -1,16 +1,46 @@
-.profile-grid.my-1.gr{
+/*.profile-grid.my-1.gr{
   float: left;
+}*/
+.chatspace{
+  float: left;
+  width: 700px;
+  height: 540px;
+  font-size: 12px;
+  clear: both;
 }
-/*.chatspace{
+/*.chatting{
 
 }*/
+.texting{
+  padding: 1rem;
+  margin: 1rem 0;
+  box-sizing: border-box; 
+  border:1px solid #cccccc;
+}
+.texting #send{
+  display: flex;
+  float: right;
+  
+}
+.texting .tool{
+  padding: 0.5rem;
+  margin: 0.3rem auto;
+}
+.texting .tool #send a{
+  width: 2rem;
+  text-align: center;
+  padding: 0.1rem;
+  background-color: #17a2b8;
+  color: white;
+}
 .sidebar-right{
-  height: 500px;
+  background-color: #f4f4f4;
+  height: 540px;
   position: relative;
-  float: left;
+  float: right;
   padding: 0;
-  margin: 0;
-  border: 1px solid gray;
+  margin: 1rem 0;
+  border: 1px solid #cccccc;
 }
 .sidebar-right .title{
   font-size: 0px;
@@ -21,15 +51,15 @@
 #group-info{
   margin: 0;
 }
-#side-content{
+.side-content{
+  padding: 0.5rem;
   position: relative;
 }
+
 #members{
   position: absolute;
 }
 #info{
   position: absolute;
 }
-/*.clicked{
-    border : 3px solid #666;
-}*/
+
