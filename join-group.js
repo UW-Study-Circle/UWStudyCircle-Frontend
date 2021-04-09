@@ -15,7 +15,7 @@ document.getElementsByClassName("contents")[0].style.display = "block";
 
 const queryURL = window.location.search;
 const urlParams = new URLSearchParams(queryURL);
-var id=urlParams.get("id");
+var groupId=urlParams.get("id");
 
 // collect title IDs into an iterable array
 var contentsArr = ["group-mem", "group-info"];
@@ -43,7 +43,7 @@ for(var i=0; i<contentsArr.length; i++){
 };
 
 async function getGroupInfo(){ 
-    const url="http://127.0.0.1:6969/api/group/" + id;
+    const url="http://127.0.0.1:6969/api/group/id/" + groupId;
     const fetchOptions = {
         method: "GET",
         credentials: 'include',
@@ -60,3 +60,40 @@ async function getGroupInfo(){
 }
 
 getGroupInfo();
+
+// get group members (1st: get group user_id, 2nd: get member's name through user_id)
+async function getMemberIds(){
+    const url="http://127.0.0.1:6969/api/member/members/" + groupId;
+    const fetchOptions = {
+        method: "GET",
+        credentials: 'include',
+    };
+    let response = await fetch(url, fetchOptions);
+    let data = await response.json();
+    var userIds = [];
+    data.forEach(function(member){
+        userIds.push(member["user_id"]);
+    })
+    let result = "";
+    for(var i=0;i<userIds.length;i++){
+        var userId = userIds[i];
+        var userName = await getUserNameById(userId); 
+        result = result + userName +"<br>";
+    }
+    document.getElementById("text-1").innerHTML = result;
+}
+
+async function getUserNameById(userId){
+    const url="http://127.0.0.1:6969/id/" + userId;
+    const fetchOptions = {
+        method: "GET",
+        credentials : 'include',
+    };
+    let response = await fetch(url, fetchOptions);
+    let data = await response.json();
+    var userName = data["firstname"]+" "+data["lastname"];
+    return userName;
+}
+
+getMemberIds();
+
