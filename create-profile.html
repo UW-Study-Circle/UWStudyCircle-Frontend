@@ -81,81 +81,29 @@ Enter availability
 
     <section class="container">
         <h1 class="large text-primary">
-            Create your Profile
+            Edit your Profile
         </h1>
         <p class="lead">
-            <i class="fas fa-user"></i> Let's get some information about you
+            <i class="fas fa-user"></i> Reset your Password
         </p>
-        <form class="form">     
+        <form action="http://127.0.0.1:6969/api/profile/reset/" class="form" id="submit_form" method="PUT">     
             
             <div class="form-group">
-                <small class="form-text">Email address</small>
-                <input type ="text" placeholder="xyz@gmail.com" name="email" required></textarea>
+                <small class="form-text">Current Password</small>
+                <input name="cpwd" type ="password" placeholder="Current Password" id="cpwd" required></textarea>
             </div>
 
             <div class="form-group">
-                <small class="form-text">Pick a good username</small>
-                <input type ="text" placeholder="Username" name="username" required></textarea>
+                <small class="form-text">New Password</small>
+                <input name="npwd" type ="password" minlength="6" placeholder="New Password" id="npwd" required></textarea>
             </div>
 
             <div class="form-group">
-                <small class="form-text">Your First Name</small>
-                <input type ="text" placeholder="First Name" name="firstN" required></textarea>
-            </div>
-
-            <div class="form-group">
-                <small class="form-text">Your Last Name</small>
-                <input type ="text" placeholder="Last Name" name="lastN" required></textarea>
+                <small class="form-text">Confirm New Password</small>
+                <input name="cnpwd" type ="password" minlength="6" placeholder="Confirm New Password" id="cnpwd" required></textarea>
             </div>
             
-            <div class="form-group">
-                <small class="form-text">Gender</small>
-                <input type="radio" name="gender" value="genderM" required>&nbsp; Male</textarea><br>
-                <input type="radio" name="gender" value="genderF">&nbsp; Female</textarea><br>
-                <input type="radio" name="gender" value="genderO">&nbsp; Other</textarea>
-            </div>
-            
-            <div class="form-group">
-                <small class="form-text">When were you born</small>
-                <input type ="date" name="dob" required></textarea>
-            </div>
-
-
-            <div class="form-group">
-                <small class="form-text">Your phone number</small>
-                <input type="tel" name="phoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><small>&nbsp; Format: 123-456-7890</small>
-            </div>
-
-            <div class="form-group">
-                <small class="form-text">Tell us what's your education status</small> 
-                <select name="status" required>
-                    <option value="0">* Select level of education</option>
-                    <option value="highschool">High school</option>
-                    <option value="UnderFreshman">Undergraduate - Freshman</option>
-                    <option value="UnderSophmore">Undergraduate - Sophmore</option>
-                    <option value="UnderJunior">Undergraduate - Junior</option>
-                    <option value="UnderSenior">Undergraduate - Senior</option>
-                    <option value="Graduate">Graduate Student</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-
-
-            <div class="field_wrapper">
-                <div>
-                    <small class="form-text">Tell us some courses you're taking</small>
-                    <input type="text" name="field_name[]" value="" />
-                    <a href="javascript:void(0);" class="add_button" title="Add field">
-                        <h1>+</h1>
-                    </a>
-                </div>
-            </div>
-            <div class="form-group">
-                <small class="form-text">Enter availability</small>
-                <input type="text" placeholder="availability" name="availability" />
-            </div>
-            
-            <input type="submit" class="btn btn-primary my-1" />
+            <input type="submit" class="btn btn-primary my-1" value="Submit" onclick="return Validate()" />
             <a class="btn btn-light my-1" href="dashboard.html">Go Back</a>
         </form>
     </section>
@@ -164,5 +112,92 @@ Enter availability
 
 
 </body>
+<script type="text/javascript">
+    function Validate() {
+        var password = document.getElementById("npwd").value;
+        var confirmPassword = document.getElementById("cnpwd").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
 
+<script>
+
+    /**
+    * Helper function for POSTing data as JSON with fetch.
+    *
+    * @param {Object} options
+    * @param {string} options.url - URL to POST data to
+    * @param {FormData} options.formData - `FormData` instance
+    * @return {Object} - Response body from URL that was POSTed to
+    */
+
+    async function putFormDataAsJson({ url, formData }) {
+        const plainFormData = Object.fromEntries(formData.entries());
+        const formDataJsonString = JSON.stringify(plainFormData);
+
+        const fetchOptions = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+                // Accept: "application/json",
+            },
+            body: formDataJsonString,
+        };
+        console.log(formDataJsonString);
+        const response = await fetch(url, fetchOptions);
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
+        }
+
+        return response.json();
+    }
+
+    /**
+        * Event handler for a form submit event.
+        *
+        * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event
+        *
+        * @param {SubmitEvent} event
+        */
+   
+    async function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+        const url = form.action;
+
+        try {
+            const formData = new FormData(form);
+            const responseData = await putFormDataAsJson({ url, formData });
+
+            console.log({ responseData });
+            if (responseData["Success"])
+            {
+                logout();
+            }
+
+            if (responseData["Failure"])
+            {
+                alert(responseData["Failure"]);
+            }
+            if (responseData["Error"])
+            {
+                alert(responseData["Error"]);
+            }
+            
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const exampleForm = document.getElementById("submit_form");
+    exampleForm.addEventListener("submit", handleFormSubmit);
+    
+</script>
 </html>
