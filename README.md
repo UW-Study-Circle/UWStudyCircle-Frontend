@@ -55,25 +55,4 @@ $ npm i jest-cli -g
 $ jest
 ```
 
-Generate the test coverage report in the command line :
-
-```bash
-$ jest --coverage
-```
-
-Sample output of code coverage tool before adding the test suit:
-
-![alt text](./images/coverage-tool.png)
-
-
-After incrementally expanding the test suit:
-
-![alt text](./images/phase1.png)
-
-![alt text](./images/phase2.png)
-
-![alt text](./images/final.png)
-
-
-
 
