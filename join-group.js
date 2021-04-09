@@ -51,11 +51,14 @@ async function getGroupInfo(){
  
     let response = await fetch(url, fetchOptions);
     let data = await response.json();
+    console.log(data);
     var info = "";
     Object.keys(data).forEach(function(key) {
         info += key+" : " + data[key] + "<br>";
+        
       
       })
+    console.log(info);
     document.getElementById("text-2").innerHTML = info;
 }
 

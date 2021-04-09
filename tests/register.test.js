@@ -1,22 +1,36 @@
-// const postFormDataAsJson = require('./register.html');
+import { postFormDataAsJson} from "./register.js";
+import { handleFormSubmit} from "./register.js";
 
 
-// it('returns the user details', async () => {
-//   axios.get.mockResolvedValue({
-//     data: [
-//       {
-//         userId: 1,
-//         id: 1,
-//         title: 'My First Album'
-//       },
-//       {
-//         userId: 1,
-//         id: 2,
-//         title: 'Album: The Sequel'
-//       }
-//     ]
-//   });
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve(  { 
+      duplicate:"Email already exists"
+  }),
+  })
+);
 
-//   const title = await getFirstAlbumTitle();
-//   expect(title).toEqual('My First Album');
-// });
+beforeEach(() => {
+  fetch.mockClear();
+});
+
+
+it("Check register", async () => {
+  const response = await postFormDataAsJson();
+  
+
+  expect(response["duplicate"]).toEqual("Email already exists");
+  expect(fetch).toHaveBeenCalledTimes(1);
+});
+
+it("Check submit button", async () => {
+    const result = await handleFormSubmit();
+
+    // console.log(result);
+    // var obj=result['responseData'];
+
+    
+  
+    expect(result["duplicate"]).toEqual("Email already exists");
+    expect(fetch).toHaveBeenCalledTimes(1);
+  });
