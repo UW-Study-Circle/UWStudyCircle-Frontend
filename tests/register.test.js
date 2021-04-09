@@ -26,9 +26,7 @@ it("Check register", async () => {
 it("Check submit button", async () => {
     const result = await handleFormSubmit();
 
-    // console.log(result);
-    // var obj=result['responseData'];
-
+    
     
   
     expect(result["duplicate"]).toEqual("Email already exists");

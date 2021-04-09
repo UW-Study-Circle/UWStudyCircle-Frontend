@@ -16,7 +16,7 @@ beforeEach(() => {
 
 it("Check group data posted", async () => {
   const response = await postFormDataAsJson();
-  console.log(response);
+  
 
   expect(response["status"]).toEqual("Public");
   expect(fetch).toHaveBeenCalledTimes(1);

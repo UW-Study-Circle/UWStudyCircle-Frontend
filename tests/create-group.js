@@ -14,7 +14,5 @@ export async function postFormDataAsJson() {
 
     const response = await fetch('http://127.0.0.1:6969/api/group/', fetchOptions);
 
- 
-
     return response.json();
 }
