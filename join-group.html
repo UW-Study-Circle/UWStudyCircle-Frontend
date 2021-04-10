@@ -134,6 +134,8 @@
                 </div>  
 
             </div>
+
+            
             <!-- sidebar -->
             <div class="sidebar-right">
                 <!-- Group Member / Group Info -->
@@ -153,11 +155,33 @@
 
                 
             </div>
+            
+            
         </div>
+        
     </section>
     <script src="join-group.js"></script>
     <script src="bundle.js" async></script>
-    
+    <div>
+        <form class="form" action="http://127.0.0.1:6969/api/member/request/" id="groupForm" method="POST">
+            <section class="container">
+                <h1 id = "adminHeading">
+                </h1>
+                <h3 class="my-2" , id="requestInfo">
+                </h3>
+                <div style="clear: both">
+                    <h3 style="text-align: left; display: inline-block;" class="my-2" , id="inputHeading">
+                        
+                    </h3>
+                    <h3 style="text-align: left; display: inline-block;" class="my-2" , id="inputApprovalID">
+                        Test
+                    </h3>
+                </div>
+                <h3 class="my-2" , id="submitBtn">
+                </h3>
+            </section>
+        </form>
+    </div>
 
 </body>
 
