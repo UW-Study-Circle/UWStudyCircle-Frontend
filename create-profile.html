@@ -142,10 +142,11 @@ Enter availability
         const fetchOptions = {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
-                // Accept: "application/json",
+                "Content-Type": "application/json",
+                Accept: "application/json",
             },
             body: formDataJsonString,
+            credentials: 'include'
         };
         console.log(formDataJsonString);
         const response = await fetch(url, fetchOptions);
