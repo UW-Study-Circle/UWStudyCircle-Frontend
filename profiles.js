@@ -72,7 +72,7 @@ async function getGroup() {
     aelem1.className = "btn btn-primary gr";
     aelem1.href = "join-group.html?id="+data["Content"][i]["id"]; //add group id to url
     aelem1.innerHTML = "Join Group";
-  
+
 
     elem.innerHTML = "Group Name: " + data["Content"][i]["groupname"];
     div2.appendChild(elem);

@@ -132,6 +132,11 @@ async function getUserNameById(userId) {
     var userName = data["firstname"] + " " + data["lastname"];
     return userName;
 }
+async function requestInfo() {
+    const profile = await getUser();
+    groupRequestArr = await groupRequest();
+    adminId = await getAdmin();
+
 
 async function adminApproval() {
     const profile = await getUser();
@@ -209,4 +214,3 @@ function submitForm(e, form) {
         alert('Error')
     });
 }
-

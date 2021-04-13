@@ -3,8 +3,14 @@ import { postFormDataAsJson} from "./create-group.js";
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
-    json: () => Promise.resolve(  { 
-      "admin": 1,"capacity": 50,"courseinfo": "cs-506","description": "Software Engineering Course Group","duration": 0,"groupname": "Software Engg","id": 1,"level": "Advanced","status": "Public"
+    json: () => Promise.resolve(  { "admin": 0,
+    "capacity": 0,
+    "courseinfo": "string",
+    "description": "string",
+    "duration": 0,
+    "groupname": "string",
+    "level": "string",
+    "status": "string"
   }),
   })
 );
@@ -14,10 +20,18 @@ beforeEach(() => {
 });
 
 
-it("Check group data posted", async () => {
-  const response = await postFormDataAsJson();
-  
 
-  expect(response["status"]).toEqual("Public");
+test("Create group response", async () => {
+  const responseData = await postFormDataAsJson("http://127.0.0.1:6969/api/group/", {
+    "admin": 0,
+    "capacity": 0,
+    "courseinfo": "string",
+    "description": "string",
+    "duration": 0,
+    "groupname": "string",
+    "level": "string",
+    "status": "string"
+  });
+
   expect(fetch).toHaveBeenCalledTimes(1);
 });

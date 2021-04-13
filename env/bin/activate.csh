@@ -8,7 +8,11 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
+<<<<<<< HEAD
 setenv VIRTUAL_ENV "/Users/karanpatel/Desktop/UW STUDY CIRCLE add_test/UWStudyCircle-Frontend/env"
+=======
+setenv VIRTUAL_ENV "/Users/karanpatel/Desktop/UW STUDY CIRCLE MAIN FINAL/UWStudyCircle-Frontend-master/env"
+>>>>>>> dc791b9f8d12aa621c37b9c489168974a8802b83
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"
