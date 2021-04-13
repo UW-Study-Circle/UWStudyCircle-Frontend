@@ -6,7 +6,7 @@ async function getUser() {
     };
     let response = await fetch(url, fetchOptions);
     let data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data;
 }
 async function renderPage() {

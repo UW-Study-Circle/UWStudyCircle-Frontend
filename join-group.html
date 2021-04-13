@@ -54,26 +54,31 @@
                         Leslie
                     </h5>
                     <p class="chatting">
-                        Does anyone done it? I can not fugure out the u,v values for the six dots if anyone has tips for that. 
-                        I've gotten all the other faces except for this one. 
+                        Does anyone done it? I can not fugure out the u,v values for the six dots if anyone has tips for
+                        that.
+                        I've gotten all the other faces except for this one.
                     </p>
                     <!-- hard code: 1st time stamp-->
                     <div class="time-stamp">
-                        <table><tr>
-                            <td style="border-bottom: 0.5px solid #aaa; width: 47%">&nbsp;</td>
-                            <td style="color:#aaa; vertical-align:middle;text-align:center; font-size:9px" rowspan="2">03/31/2021</td>
-                            <td style="border-bottom: 0.5px solid #aaa; width: 47%">&nbsp;</td>
-                            </tr><tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            </tr></table>
+                        <table>
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #aaa; width: 47%">&nbsp;</td>
+                                <td style="color:#aaa; vertical-align:middle;text-align:center; font-size:9px"
+                                    rowspan="2">03/31/2021</td>
+                                <td style="border-bottom: 0.5px solid #aaa; width: 47%">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
                     </div>
-                    
+
                     <h5>
                         Sean
                     </h5>
                     <p class="chatting">
-                            Why is a quaternion used for keeping track of an object's rotation?
+                        Why is a quaternion used for keeping track of an object's rotation?
                     </p>
                     <h5>
                         Leslie
@@ -84,7 +89,7 @@
                     <h5>
                         Max
                     </h5>
-                    <p class="chatting"> 
+                    <p class="chatting">
                         Yeah, look on page 32/33 of lecture 16.
                     </p>
                     <h5>
@@ -95,14 +100,18 @@
                     </p>
                     <!-- hard code: 2nd time stamp-->
                     <div class="time-stamp">
-                        <table><tr>
-                            <td style="border-bottom: 0.5px solid #aaa; width: 47%">&nbsp;</td>
-                            <td style="color:#aaa; vertical-align:middle;text-align:center; font-size:9px" rowspan="2">04/01/2021</td>
-                            <td style="border-bottom: 0.5px solid #aaa; width: 47%">&nbsp;</td>
-                            </tr><tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            </tr></table>
+                        <table>
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #aaa; width: 47%">&nbsp;</td>
+                                <td style="color:#aaa; vertical-align:middle;text-align:center; font-size:9px"
+                                    rowspan="2">04/01/2021</td>
+                                <td style="border-bottom: 0.5px solid #aaa; width: 47%">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
                     </div>
                     <h5>
                         Max
@@ -115,7 +124,7 @@
                     </h5>
                     <p class="chatting">
                         I've upload my notes yesterday. Go to group doc and check it 0331.pdf.
-                    </p>    
+                    </p>
                 </div>
 
 
@@ -126,14 +135,15 @@
                     </div>
                     <br><br><br>
                     <div class="tool">
-                       
+
                         <div id="send">
                             <a href="#"><i style='font-size:18px' class='fas'>&#xf1d8;</i></a>
                         </div>
                     </div>
-                </div>  
+                </div>
 
             </div>
+
             <!-- sidebar -->
             <div class="sidebar-right">
                 <!-- Group Member / Group Info -->
@@ -151,13 +161,37 @@
                     </div>
                 </div>
 
-                
+
             </div>
+
+
         </div>
+
     </section>
     <script src="join-group.js"></script>
     <script src="bundle.js" async></script>
-    
+    <div>
+        <form class="form" action="" id="groupForm" method="POST" onsubmit="submitForm(event, this)">
+            <section class="container">
+                <h1 id="adminHeading", name="adminHeading">
+                    Admin Approval Requests
+                </h1>
+                <h3 class="my-2", id="requestInfo", name="requestInfo">
+                </h3>
+                <div style="clear: both">
+                    <h3 style="text-align: left; display: inline-block;" class="my-2" , id="inputHeading" , name="inputHeading">
+                        Enter the number from list above you want to approve
+                    </h3>
+                    <h3 style="text-align: left; display: inline-block;" class="my-2" , id="inputApprovalID", name="inputApprovalID">
+                        <input type="text", id="approvedID", name="approvedID" />
+                    </h3>
+                </div>
+                <h3 class="my-2">
+                    <input type="submit" class="btn btn-primary my-1" onclick="return submitForm(event, this)" id="submitBtn" name = "submitBtn"/>
+                </h3>
+            </section>
+        </form>
+    </div>
 
 </body>
 
