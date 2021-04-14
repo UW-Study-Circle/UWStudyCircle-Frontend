@@ -75,7 +75,7 @@ async function handleFormSubmit(event) {
         const formData = new FormData(form);
         const responseData = await postFormDataAsJson({ url, formData });
 
-        console.log({ responseData });
+        console.log(responseData );
         if (responseData["Success"])
         {
             window.location.href = 'profiles.html';
