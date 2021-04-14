@@ -98,5 +98,78 @@ async function getUserNameById(userId){
     return userName;
 }
 
+async function requestInfo() {
+    const profile = await getUser();
+    groupRequestArr = await groupRequest();
+    adminId = await getAdmin();
+
+
+async function adminApproval() {
+    const profile = await getUser();
+    groupRequestArr = await groupRequest();
+    adminId = await getAdmin();
+
+
+    var confirmPassword = document.getElementById("cnpwd").value;
+    if (password != confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+    }
+    return true;
+}
+
+async function requestInfo() {
+    const profile = await getUser();
+    const groupRequestArr = await groupRequest();
+
+
+    // console.log(profile)
+    if (profile["Error"]) {
+        window.location.href = 'login.html';
+    }
+    var result = ""
+    for (var i = 0; i < groupRequestArr.length; i++) {
+        var requestNo = i + 1;
+        var userName = await getUserNameById(groupRequestArr[i]["user_id"]);
+        result = result + requestNo + " - " + userName + "<br>";
+    }
+
+    document.getElementById("requestInfo").innerHTML = result;
+    document.getElementById("inputHeading").innerHTML = "Enter the number from list above you want to approve";
+    
+
+
+}
+
+async function getUser() {
+    const url = "http://127.0.0.1:6969/";
+
+    const fetchOptions = {
+        method: "GET",
+        credentials: 'include',
+    };
+    let response = await fetch(url, fetchOptions);
+    let data = await response.json();
+    return data;
+}
+
 getMemberIds();
 
+fetch('http://127.0.0.1:6969/api/member/request/', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        credentials: 'include',
+        body: JSON.stringify({ "approval": true, "group_id": groupId, "request_id": approvedID })
+    }).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        //Success code goes here
+        alert('form submited')
+    }).catch(function (err) {
+        //Failure
+        alert('Error')
+    });
+}

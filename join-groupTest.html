@@ -1,0 +1,18 @@
+<script src="join-group.js"></script>
+<script type="text/javascript">
+
+    //Use a@a.com as login to test.
+    
+    var a = getAdmin();
+    console.log(a)
+    if (a!="1") {
+        console.log("Test 1 failed - Admin not working")
+    }
+
+    var a = getUserNameById(1);
+    if (a != "a a") {
+            console.log("Test 2 failed - User's name not showing properly")
+        }
+
+
+</script>
