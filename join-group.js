@@ -142,7 +142,6 @@ async function adminApproval() {
     const profile = await getUser();
     groupRequestArr = await groupRequest();
     adminId = await getAdmin();
-    console.log("Trial")
 
 
     var confirmPassword = document.getElementById("cnpwd").value;
