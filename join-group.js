@@ -86,6 +86,24 @@ async function getMemberIds(){
     document.getElementById("text-1").innerHTML = result;
 }
 
+async function joinPublicGroup(){
+    const url="http://127.0.0.1:6969/api/member/join/" + groupId;
+    const fetchOptions = {
+        method: "PUT",
+        credentials: 'include',
+    };
+  
+    let response = await fetch(url, fetchOptions);
+    let data = await response.json();
+    var error =  data["Error"];
+    if(error !=null){
+      alert(error);
+    }else{
+        var success = data["Success"];
+        alert(success);
+    }
+}
+
 async function getUserNameById(userId){
     const url="http://127.0.0.1:6969/id/" + userId;
     const fetchOptions = {
@@ -98,5 +116,5 @@ async function getUserNameById(userId){
     return userName;
 }
 
-getMemberIds();
+joinPublicGroup().then(()=>getMemberIds()); 
 
