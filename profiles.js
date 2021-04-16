@@ -87,15 +87,21 @@ async function getGroup() {
 
     var div2 = document.createElement("div");
 
+    var status = data["Content"][i]["status"];
+    var groupId = data["Content"][i]["id"];
+    var courseInfo = data["Content"][i]["courseinfo"];
+    var description = data["Content"][i]["description"];
+    var groupName = data["Content"][i]["groupname"];
+    
     var elem = document.createElement("h2");
     var elem1 = document.createElement("p");
-    elem1.innerHTML = "Status: " + data["Content"][i]["status"];
+    elem1.innerHTML = "Status " + status;
 
     var elem2 = document.createElement("p");
-    elem2.innerHTML = "Course:  " + data["Content"][i]["courseinfo"];
+    elem2.innerHTML = "Course:  " + courseInfo;
 
     var elem3 = document.createElement("p");
-    elem3.innerHTML = "Description:  " + data["Content"][i]["description"];
+    elem3.innerHTML = "Description:  " + description;
 
     var elem4 = document.createElement("p");
 
@@ -107,19 +113,19 @@ async function getGroup() {
 
     var aelem1 = document.createElement("a");
     aelem1.className = "btn btn-primary gr";
-    aelem1.href = "join-group.html?id=" + data["Content"][i]["id"]; //add group id to url
+    aelem1.href = "join-group.html?id=" + groupId; //add group id to url
     aelem1.innerHTML = "Join Group";
     aelem1.style = "width: 140px; margin: 5px";
 
     var aelem2 = document.createElement("BUTTON");
     aelem2.className = "btn btn-danger gr";
     aelem2.onclick = confirmDelete;
-    aelem2['data-id'] = data["Content"][i]["id"]
+    aelem2['data-id'] = groupId;
     console.log(data["Content"][i]);
     aelem2.innerHTML = "Delete Group";
     aelem2.style = "width: 140px; margin: 5px";
 
-    elem.innerHTML = "Group Name: " + data["Content"][i]["groupname"];
+    elem.innerHTML = "Group Name: " + groupName;
     div2.appendChild(elem);
     div2.appendChild(aelem);
     div2.appendChild(aelem1);
