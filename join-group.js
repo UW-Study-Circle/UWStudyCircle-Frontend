@@ -16,6 +16,7 @@ document.getElementsByClassName("contents")[0].style.display = "block";
 const queryURL = window.location.search;
 const urlParams = new URLSearchParams(queryURL);
 var groupId=urlParams.get("id");
+var pendingIdsSet = new Set();
 
 // collect title IDs into an iterable array
 var contentsArr = ["group-mem", "group-info"];
@@ -75,7 +76,10 @@ async function getMemberIds(){
     let data = await response.json();
     var userIds = [];
     data.forEach(function(member){
-        userIds.push(member["user_id"]);
+        var userId = member["user_id"];
+        userIds.push(userId);
+        var pending = member["pending"];
+        if(pending) pendingIdsSet.add(userId);
     })
     let result = "";
     for(var i=0;i<userIds.length;i++){
@@ -96,7 +100,7 @@ async function joinPublicGroup(){
     let response = await fetch(url, fetchOptions);
     let data = await response.json();
     var error =  data["Error"];
-    if(error !=null){
+    if(error != null){
       alert(error);
     }else{
         var success = data["Success"];
@@ -113,6 +117,9 @@ async function getUserNameById(userId){
     let response = await fetch(url, fetchOptions);
     let data = await response.json();
     var userName = data["firstname"]+" "+data["lastname"];
+    if(pendingIdsSet.has(userId)){
+        userName += " (Pending)";
+    }
     return userName;
 }
 
