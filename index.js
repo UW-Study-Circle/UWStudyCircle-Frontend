@@ -17,7 +17,7 @@ async function renderPage() {
         console.log(profile);
     }
     else{
-        window.location.href = 'dashboard.html';
+        window.location.href = 'chat.html';
     }
 }
 renderPage();
