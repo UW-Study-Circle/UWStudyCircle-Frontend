@@ -35,7 +35,8 @@
         </p>
 
         <!--action="dashboard.html"-->
-        <form action="http://127.0.0.1:6969/api/user/" class="form" id="regForm" method="POST">
+        <form action="http://127.0.0.1:6969/api/user/" class="form" id="regForm" method="POST" > 
+        
            
             <div class="form-group">
                 <small class="form-text">
@@ -77,7 +78,7 @@
             
             <div class="form-group">
                 <small class="form-text">When were you born</small>
-                <input type="date" name="bday" required></textarea>
+                <input type="date" name="bday" id="birthdate" required></textarea>
             </div>
             
             
@@ -90,11 +91,13 @@
             
             <div class="form-group">
                 <small class="form-text">Enter a password</small>
-                <input type="password" placeholder="Password" minlength="6" name="password" required>
+                <input type="password" placeholder="Password" minlength="6" name="password" id="ps" required>
             </div>
             <div class="form-group">
                 <small class="form-text">Confirm password</small>
-                <input type="password" placeholder="Confirm password" minlength="6" required>
+                <input type="password" placeholder="Confirm password" minlength="6" id="confirmed_ps" required>
+                <script>
+                </script>
             </div>
             <input type="submit" class="btn btn-primary" value="Register">
         </form>
@@ -146,6 +149,27 @@
             */
        
         async function handleFormSubmit(event) {
+            
+
+            var startDt = new Date('01/01/1900 00:00');
+            var inputDt = new Date(document.getElementById("birthdate").value);
+            var endDt = new Date();
+
+            if( inputDt.getTime() > endDt.getTime() || inputDt.getTime() < startDt.getTime()){
+                alert("The input date is unreasonable!");
+                bday_falg = 0;
+                event.preventDefault();
+                return false;
+            }
+
+            if(document.getElementById("ps").value !== document.getElementById("confirmed_ps").value){
+                alert("Your confirmed password must be equal to input password!");
+                ps_flag = 0;
+                event.preventDefault();
+                return false;  
+            }
+
+            
             event.preventDefault();
 
             const form = event.currentTarget;
