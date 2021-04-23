@@ -113,7 +113,11 @@ async function getGroup() {
 
     var aelem1 = document.createElement("a");
     aelem1.className = "btn btn-primary gr";
-    aelem1.href = "join-group.html?id=" + groupId; //add group id to url
+    if(status=="Private"){
+       aelem1.href=`javascript:joinPrivateGroup("${groupId}")`;
+    }else{
+      aelem1.href = "join-group.html?id=" + groupId; //add group id to url
+    }
     aelem1.innerHTML = "Join Group";
     aelem1.style = "width: 140px; margin: 5px";
 
@@ -144,6 +148,26 @@ async function getGroup() {
     console.log(i);
   }
   return data;
+}
+
+// user join group (add the user to the group member list)
+async function joinPrivateGroup(groupId){
+  const url="http://127.0.0.1:6969/api/member/join/" + groupId;
+  const fetchOptions = {
+      method: "PUT",
+      credentials: 'include',
+  };
+
+  let response = await fetch(url, fetchOptions);
+  let data = await response.json();
+  var error =  data["Error"];
+  var msg = "This is a private group.\n\n";
+  if(error != null){
+    alert(msg+ error);     // show message if the user already joined the group 
+  }else{
+      var success = data["Success"]; 
+      alert(msg+success);   // show message that need admin approval if the user join a private group
+  }
 }
 
 getGroup();
