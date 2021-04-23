@@ -77,6 +77,7 @@
             };
 
             const response = await fetch(url, fetchOptions);
+            console.log(response)
 
             if (!response.ok) {
                 const errorMessage = await response.text();
@@ -107,7 +108,10 @@
                 const responseData = await postFormDataAsJson({ url, formData });
 
                 console.log({ responseData });
+                
                 if (responseData["Content"]){
+                    window.localStorage.setItem("current_userId", responseData["Content"]["id"]);
+                    console.log(window.localStorage);
                     location = "dashboard.html";
                 }
                 var v = document.getElementById("alert");
