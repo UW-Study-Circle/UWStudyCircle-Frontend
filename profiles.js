@@ -163,7 +163,7 @@ async function joinPrivateGroup(groupId){
   var error =  data["Error"];
   var msg = "This is a private group.\n\n";
   if(error != null){
-    alert(msg+ "Waiting for Admin Approval.");     // show message if the user already joined the group 
+    alert(msg+ "Request has been sent. Waiting for Admin Approval.");     // show message if the user already joined the group 
   }else{
       var success = data["Success"]; 
       alert(msg+success);   // show message that need admin approval if the user join a private group
