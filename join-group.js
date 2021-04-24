@@ -183,6 +183,7 @@ async function getUser() {
 }
 
 getMemberIds();
+joinPublicGroup().then(()=>getMemberIds()); 
 
 fetch('http://127.0.0.1:6969/api/member/request/', {
         method: 'POST',
