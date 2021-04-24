@@ -16,6 +16,8 @@ document.getElementsByClassName("contents")[0].style.display = "block";
 const queryURL = window.location.search;
 const urlParams = new URLSearchParams(queryURL);
 var groupId=urlParams.get("id");
+var pendingIdsSet = new Set();
+var groupAdminId;
 
 // collect title IDs into an iterable array
 var contentsArr = ["group-mem", "group-info"];
@@ -51,18 +53,16 @@ async function getGroupInfo(){
  
     let response = await fetch(url, fetchOptions);
     let data = await response.json();
-    console.log(data);
-    var info = "";
+    let info = "";
     Object.keys(data).forEach(function(key) {
-        info += key+" : " + data[key] + "<br>";
-        
-      
-      })
-    console.log(info);
+        info += key+" : " + data[key] + "<br>"
+      });
     document.getElementById("text-2").innerHTML = info;
+    groupAdminId = data["admin"];
 }
 
 getGroupInfo();
+joinPublicGroup().then(()=>getMemberIds()); 
 
 // get group members (1st: get group user_id, 2nd: get member's name through user_id)
 async function getMemberIds(){
@@ -75,7 +75,10 @@ async function getMemberIds(){
     let data = await response.json();
     var userIds = [];
     data.forEach(function(member){
-        userIds.push(member["user_id"]);
+        var userId = member["user_id"];
+        userIds.push(userId);
+        var pending = member["pending"];
+        if(pending) pendingIdsSet.add(userId);
     })
     let result = "";
     for(var i=0;i<userIds.length;i++){
@@ -86,6 +89,27 @@ async function getMemberIds(){
     document.getElementById("text-1").innerHTML = result;
 }
 
+// user join group (add the user to the group member list)
+async function joinPublicGroup(){
+    const url="http://127.0.0.1:6969/api/member/join/" + groupId;
+    const fetchOptions = {
+        method: "PUT",
+        credentials: 'include',
+    };
+  
+    let response = await fetch(url, fetchOptions);
+    let data = await response.json();
+    var error =  data["Error"];
+    if(error != null){
+      alert(error);     // show message if the user already joined the group 
+    }else{
+        var success = data["Success"]; 
+        alert(success);   // show message that need admin approval if the user join a private group
+    }
+}
+
+
+
 async function getUserNameById(userId){
     const url="http://127.0.0.1:6969/id/" + userId;
     const fetchOptions = {
@@ -94,7 +118,13 @@ async function getUserNameById(userId){
     };
     let response = await fetch(url, fetchOptions);
     let data = await response.json();
-    var userName = data["firstname"]+" "+data["lastname"];
+    var userName = data["firstname"]+" "+data["lastname"]; 
+    if(pendingIdsSet.has(userId)){
+        userName += " (Pending)";    // show (Pending) status if the users need admin approval
+    }
+    if(userId==groupAdminId){
+        userName += " (Admin)";  // show (Admin) if the user is admin of the group
+    }
     return userName;
 }
 
@@ -153,7 +183,7 @@ async function getUser() {
     return data;
 }
 
-getMemberIds();
+
 
 fetch('http://127.0.0.1:6969/api/member/request/', {
         method: 'POST',
