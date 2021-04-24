@@ -62,6 +62,7 @@ async function getGroupInfo(){
 }
 
 getGroupInfo();
+joinPublicGroup().then(()=>getMemberIds()); 
 
 // get group members (1st: get group user_id, 2nd: get member's name through user_id)
 async function getMemberIds(){
@@ -182,8 +183,7 @@ async function getUser() {
     return data;
 }
 
-getMemberIds();
-joinPublicGroup().then(()=>getMemberIds()); 
+
 
 fetch('http://127.0.0.1:6969/api/member/request/', {
         method: 'POST',
