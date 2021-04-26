@@ -1,4 +1,3 @@
-
 // loop through each contents item and hides it
 
 function hideSideContent(){
@@ -57,6 +56,7 @@ async function getGroupInfo(){
     Object.keys(data).forEach(function(key) {
         info += key+" : " + data[key] + "<br>"
       });
+    document.getElementById("groupname").innerHTML = data.groupname;
     document.getElementById("text-2").innerHTML = info;
     groupAdminId = data["admin"];
 }

@@ -48,9 +48,9 @@
             <div class="profile-top bg-primary p-2">
                 <img src="images/cs1.jpg" alt="" class="round-img my-1">
 
-                <h1 class="large">[GROUP NAME]</h1>
-                <p class="lead">[Details]</p>
-                <p>[Location]</p>
+                <h1 class="large" id="groupname"></h1>
+            
+                <p>Location: Virtual</p>
                 <div class="icons my-1">
                     <a href="#">
                         <i class="fa fa-globe fa-2x"></i>
@@ -82,84 +82,66 @@
             <!-- About -->
             <div class="profile-about bg-light p-2">
                 <h2 class="text-primary">
-                    [GROUP'S BIO]
+                    GROUP'S BIO
                 </h2>
 
-                <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus expedita sapiente illum.
+                <p class="text" id="description">
+                    
                 </p>
 
                 <div class="line"></div>
 
                 <h2 class="text-primary">
-                    Skill Set
+                    Related Course
                 </h2>
-                <div class="skills">
-                    <div class="p-1">
-                        <i class="fas fa-check"></i> Python
-                    </div>
+            
+                   
+                        <p class="text" id="course"></p> 
+                    
 
-                    <div class="p-1">
-                        <i class="fas fa-check"></i> Docker
-                    </div>
-
-                    <div class="p-1">
-                        <i class="fas fa-check"></i> PostgreSQL
-                    </div>
-                </div>
+                    
+               
             </div>
 
             <!-- Experience -->
             <div class="profile-exp bg-white p-2">
                 <h2 class="text-primary">
-                    [Major details Heading]
+                    Group Details
                 </h2>
 
                 <div>
-                    <h3>[Major details]</h3>
-                    <p>[Date/time etc.]</p>
-                    <p>
-                        <strong>[Sub details]:</strong> xyzyzyz
-                    </p>
+                    <h3>Duration</h3>
+                    <p class="text" id="duration"></p>
+                   
 
                     <p>
-                        <strong>[Sub details]: </strong>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti
-                        inventore aliquam id ullam qui delectus sed deserunt facilis error blanditiis culpa illo!
+                        <strong>Capacity: </strong>
+                        <p class="text" id="capacity"></p>
                     </p>
+
+                    <h3>Level</h3>
+                    <p class ="text" id="level"></p>
                 </div>
 
-                <div>
-                    <h3>[Major details]</h3>
-                    <p>[Date/time etc]</p>
-                    <p>
-                        <strong>[Sub details]: </strong>Senior Developer
-                    </p>
-
-                    <p>
-                        <strong>[Sub details]: </strong>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti
-                        inventore aliquam id ullam qui delectus sed deserunt facilis error blanditiis culpa illo!
-                    </p>
-                </div>
+                
             </div>
 
             <!-- Education -->
             <div class="profile-edu bg-white p-2">
                 <h2 class="text-primary">
-                    [Major Details Heading]
+                    Accesibility
                 </h2>
-
                 <div>
-                    <h3>[Major details]</h3>
-                    <p>[Date/Tim etc]</p>
+                    
                     <p>
-                        <strong>[Sub details]: </strong>xyz
+                        <strong>Adminstartor ID: </strong>
+                        <p class ="text" id="admin"></p>
+
                     </p>
+
                     <p>
-                        <strong>[Sub details]: </strong> bhfj
-                    </p>
-                    <p>
-                        <strong>Description </strong>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti
-                        inventore aliquam id ullam qui delectus sed deserunt facilis error blanditiis culpa illo!
+                        <strong>Privacy Status (Private groups require admin's approval): </strong>
+                        <p class ="text" id="status"></p>
                     </p>
                 </div>
             </div>
@@ -168,13 +150,13 @@
             <div class="profile-github">
 
                 <h2 class="text-primary my-1">
-                    <i class="fab fa-github"></i> Github Repo
+                    <i class="fab fa-github"></i> Github Repositories linked to this group
                 </h2>
 
                 <div class="repo bg-white my-1 p-1">
                     <div>
                         <h4><a href="#" class="">PipeTaxon</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, deleniti?</p>
+                       
                     </div>
 
                     <div>
@@ -189,7 +171,7 @@
                 <div class="repo bg-white my-1 p-1">
                     <div>
                         <h4><a href="#" class="">Badger Bytes</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, deleniti?</p>
+                        
                     </div>
 
                     <div>
@@ -204,7 +186,7 @@
         </div>
     </section>
 
-    <script src="bundle.js" async></script>
+    <script src="profile.js" type="text/javascript"></script>
 </body>
 
 </html>

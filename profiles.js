@@ -107,7 +107,7 @@ async function getGroup() {
 
     var aelem = document.createElement("a");
     aelem.className = "btn btn-primary gr";
-    aelem.href = "profile.html";
+    aelem.href = "profile.html?id=" + groupId; //add group id to url
     aelem.innerHTML = "View Group";
     aelem.style = "width: 140px; margin: 5px";
 
