@@ -31,9 +31,8 @@ async function getGroupInfo(){
     document.getElementById("status").innerHTML = data.status;
     document.getElementById("level").innerHTML = data.level;
     document.getElementById("capacity").innerHTML = data.capacity;
-    
-
-
+    document.getElementById("chat").href = "http://127.0.0.1:6969/chat?groupid="+data.id;
+    // document.getElementById("chat").href = `chat.html?id=${data.id}`; 
 }
 
 getGroupInfo();
