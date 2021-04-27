@@ -83,9 +83,35 @@
             <input type="button" class="button1" onclick="leave_room();" value="Delete last message for everyone" /> -->
 
             
-         
-        </div>
     </section>
+
+
+
+      <div id="div1", name = "div1">
+        <form class="form" action="" id="groupForm" method="POST" onsubmit="submitForm(event, this)">
+            <section class="container">
+                <h1 id="adminHeading", name="adminHeading">
+                    Admin Approval Requests
+                </h1>
+                <h3 class="my-2", id="requestInfo", name="requestInfo">
+                </h3>
+                <div style="clear: both">
+                    <h3 style="text-align: left; display: inline-block;" class="my-2" , id="inputHeading" , name="inputHeading">
+                        Enter the number from list above you want to approve
+                    </h3>
+                    <h3 style="text-align: left; display: inline-block;" class="my-2" , id="inputApprovalID", name="inputApprovalID">
+                        <input type="text", id="approvedID", name="approvedID" />
+                    </h3>
+                </div>
+                <h3 class="my-2">
+                    <input type="submit" class="btn btn-primary my-1" onclick="return submitForm(event, this)" id="submitBtn" name = "submitBtn"/>
+                </h3>
+            </section>
+        </form>
+    </div>
+
+
+    
     <script src="join-group.js"></script>
     <script src="bundle.js" async></script>
     
