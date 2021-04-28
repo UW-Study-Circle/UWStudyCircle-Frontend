@@ -14,7 +14,7 @@ document.getElementsByClassName("contents")[0].style.display = "block";
 
 const queryURL = window.location.search;
 const urlParams = new URLSearchParams(queryURL);
-var groupId=urlParams.get("id");
+var groupId=urlParams.get("groupid");
 console.log(groupId);
 var pendingIdsSet = new Set();
 var groupAdminId;
@@ -57,6 +57,7 @@ async function getGroupInfo(){
     Object.keys(data).forEach(function(key) {
         info += key+" : " + data[key] + "<br>"
       });
+    console.log(data.groupname)
     document.getElementById("groupname").innerHTML = data.groupname;
     document.getElementById("text-2").innerHTML = info;
     groupAdminId = data["admin"];
@@ -101,12 +102,12 @@ async function joinPublicGroup(){
     let response = await fetch(url, fetchOptions);
     let data = await response.json();
     var error =  data["Error"];
-    if(error != null){
-      alert(error);     // show message if the user already joined the group 
-    }else{
-        var success = data["Success"]; 
-        alert(success);   // show message that need admin approval if the user join a private group
-    }
+    // if(error != null){
+    //   alert(error);     // show message if the user already joined the group 
+    // }else{
+    //     var success = data["Success"]; 
+    //     alert(success);   // show message that need admin approval if the user join a private group
+    // }
 }
 
 
@@ -127,12 +128,14 @@ async function getUserNameById(userId){
         userName += " (Admin)";  // show (Admin) if the user is admin of the group
     }
     return userName;
-}
+
 
 async function requestInfo() {
     const profile = await getUser();
     groupRequestArr = await groupRequest();
     adminId = await getAdmin();
+
+}
 
 
 async function adminApproval() {
