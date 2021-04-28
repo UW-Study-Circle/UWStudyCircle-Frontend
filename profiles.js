@@ -54,6 +54,23 @@ async function confirmDelete(e) {
   }
 }
 
+async function getMembers(groupId){
+  const url="http://127.0.0.1:6969/api/member/members/" + groupId;
+  const fetchOptions = {
+      method: "GET",
+      credentials: 'include',
+  };
+  let response = await fetch(url, fetchOptions);
+  let data = await response.json();
+  console.log("group members", data);
+  var userIds = [];
+  data.forEach(function(member){
+      var userId = member["user_id"];
+      userIds.push(userId);
+  });
+  return userIds;
+}
+
 async function getGroup() {
   const url = "http://127.0.0.1:6969/api/group";
   const fetchOptions = {
@@ -132,7 +149,10 @@ async function getGroup() {
     elem.innerHTML = "Group Name: " + groupName;
     div2.appendChild(elem);
     div2.appendChild(aelem);
-    div2.appendChild(aelem1);
+    if(!(await getMembers(groupId)).includes(parseInt(window.localStorage.getItem("current_userId")))){
+      div2.appendChild(aelem1);
+    }
+    
     console.log(window.localStorage, data["Content"][i]["admin"].toString())
     if(window.localStorage.getItem("current_userId") == data["Content"][i]["admin"].toString()){
       div2.appendChild(aelem2);
