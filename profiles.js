@@ -141,7 +141,7 @@ async function getGroup() {
     var aelem = document.createElement("a");
     aelem.className = "btn btn-primary gr";
     aelem.href = "profile.html?id=" + groupId; //add group id to url
-    aelem.innerHTML = "View Group";
+    aelem.innerHTML = "View";
     aelem.style = "width: 140px; height: 40px; margin: 5px";
 
     var aelem1 = document.createElement("a");
@@ -151,7 +151,7 @@ async function getGroup() {
     }else{
       aelem1.href = `javascript:joinPublicGroup("${groupId}")`;
     }
-    aelem1.innerHTML = "Join Group";
+    aelem1.innerHTML = "Join";
     aelem1.style = "width: 140px; height: 40px; margin: 5px";
 
     var aelem2 = document.createElement("BUTTON");
@@ -159,7 +159,7 @@ async function getGroup() {
     aelem2.onclick = confirmDelete;
     aelem2['data-id'] = groupId;
     console.log(data["Content"][i]);
-    aelem2.innerHTML = "Delete Group";
+    aelem2.innerHTML = "Delete";
     aelem2.style = "width: 140px; height: 40px; margin: 5px";
 
     elem.innerHTML = "Group Name: " + groupName;
