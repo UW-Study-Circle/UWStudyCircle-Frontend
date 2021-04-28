@@ -1,5 +1,18 @@
 // loop through each contents item and hides it
 
+async function getUser() {
+    const url = "http://127.0.0.1:6969/";
+
+    const fetchOptions = {
+        method: "GET",
+        credentials: 'include',
+    };
+    let response = await fetch(url, fetchOptions);
+    let data = await response.json();
+    return data;
+}
+
+
 function hideSideContent(){
     var elements = document.getElementsByClassName("contents");
     for(var i=0; i < elements.length; i++){
@@ -8,6 +21,19 @@ function hideSideContent(){
 }
 
 hideSideContent();
+
+async function groupRequest() {
+    const url = "http://127.0.0.1:6969/api/member/members/" + groupId;
+    const fetchOptions = {
+        method: "GET",
+        credentials: 'include',
+    };
+
+    let response = await fetch(url, fetchOptions);
+    let data = await response.json();
+    return data;
+}
+groupRequest();
 
 // show the 1st content item
 document.getElementsByClassName("contents")[0].style.display = "block";
@@ -43,6 +69,18 @@ for(var i=0; i<contentsArr.length; i++){
         };
     }, false);
 };
+
+async function getAdmin() {
+    const url = "http://127.0.0.1:6969/api/group/id/" + groupId;
+    const fetchOptions = {
+        method: "GET",
+        credentials: 'include',
+    };
+
+    let response = await fetch(url, fetchOptions);
+    let data = await response.json();
+    return data["admin"]
+}
 
 async function getGroupInfo(){ 
     const url="http://127.0.0.1:6969/api/group/id/" + groupId;
@@ -129,18 +167,31 @@ async function getUserNameById(userId){
     return userName;
 }
 
+
+async function helperGetUserNameById(userId) {
+    const url = "http://127.0.0.1:6969/id/" + userId;
+    const fetchOptions = {
+        method: "GET",
+        credentials: 'include',
+    };
+    let response = await fetch(url, fetchOptions);
+    let data = await response.json();
+    var userName = data["firstname"] + " " + data["lastname"];
+    
+    return userName;
+}
+
 async function requestInfo() {
     const profile = await getUser();
     groupRequestArr = await groupRequest();
     adminId = await getAdmin();
-
+}
 
 async function adminApproval() {
     const profile = await getUser();
     groupRequestArr = await groupRequest();
     adminId = await getAdmin();
-
-
+    
     var confirmPassword = document.getElementById("cnpwd").value;
     if (password != confirmPassword) {
         alert("Passwords do not match.");
@@ -149,36 +200,15 @@ async function adminApproval() {
     return true;
 }
 
-async function requestInfo() {
-    const profile = await getUser();
-    const groupRequestArr = await groupRequest();
-
-
-    // console.log(profile)
-    if (profile["Error"]) {
-        window.location.href = 'login.html';
-    }
-    var result = ""
-    for (var i = 0; i < groupRequestArr.length; i++) {
-        var requestNo = i + 1;
-        var userName = await getUserNameById(groupRequestArr[i]["user_id"]);
-        result = result + requestNo + " - " + userName + "<br>";
-    }
-
-    document.getElementById("requestInfo").innerHTML = result;
-    document.getElementById("inputHeading").innerHTML = "Enter the number from list above you want to approve";
-    
-
-
-}
 
 async function getUser() {
     const url = "http://127.0.0.1:6969/";
-
     const fetchOptions = {
         method: "GET",
         credentials: 'include',
     };
+
+
     let response = await fetch(url, fetchOptions);
     let data = await response.json();
     return data;
@@ -186,7 +216,68 @@ async function getUser() {
 
 
 
-fetch('http://127.0.0.1:6969/api/member/request/', {
+
+async function requestInfo() {
+    const profile = await getUser();
+    const groupRequestArr = await groupRequest();
+    var pends = []
+    for (var i = 0; i < groupRequestArr.length; i++) {
+        var requestNo = groupRequestArr[i]["user_id"];
+        if (groupRequestArr[i]["pending"]==true){
+            var namePend = await helperGetUserNameById(groupRequestArr[i]["user_id"])
+           
+            console.log(namePend)
+            console.log(requestNo)
+
+            pends.push(namePend)
+        }
+    }
+    list1=[]
+    for (var i = 0; i < groupRequestArr.length; i++) {
+        if (groupRequestArr[i]["pending"] == true) {
+            list1.push(groupRequestArr[i])
+        }
+    }
+
+    if (profile["Error"]) {
+        window.location.href = 'login.html';
+    }
+    var result = ""
+    for (var i = 0; i < list1.length; i++) {
+        var userID = list1[i]["id"];
+        var userName = pends[i]
+       
+        result = result + userID + " - " + userName + "<br>";
+        
+    }
+
+    const profileU = await getUser();
+    adminIdNo = await getAdmin();
+    console.log(profileU["id"])
+    console.log(adminIdNo)
+
+    if (profileU["id"] == adminIdNo){
+        document.getElementById("requestInfo").innerHTML = result;
+        document.getElementById("inputHeading").innerHTML = "Enter the number from list above you want to approve";
+    }
+    else{
+        document.getElementById("requestInfo").style.display = "none";
+        document.getElementById("inputHeading").style.display = "none";
+        document.getElementById("div1").style.display = "none";
+       
+    }
+
+}
+
+requestInfo();
+
+
+
+function submitForm(e, form) {
+    e.preventDefault();
+    var approvedID = document.getElementById("approvedID").value;
+
+    fetch('http://127.0.0.1:6969/api/member/request/', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -204,3 +295,4 @@ fetch('http://127.0.0.1:6969/api/member/request/', {
         alert('Error')
     });
 }
+
