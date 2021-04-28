@@ -7,5 +7,5 @@ async function logout() {
     let response = await fetch(url, fetchOptions);
     let data = await response.json();
     console.log(data);
-    window.location.href = 'index.html';
+    window.location.href = 'http://localhost:8080/index.html';
 }
