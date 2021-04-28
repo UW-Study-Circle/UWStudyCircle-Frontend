@@ -96,13 +96,29 @@ async function getGroup() {
   for (i = 0, len = data["Content"].length, text = ""; i < len; i++) {
     var divelem = document.createElement("div");
     divelem.className = "profile bg-light";
+    divelem.style = "position: relative;"
     var imagelem = document.createElement("img");
     imagelem.src = "images/cs1.jpg";
     imagelem.alt = "";
     imagelem.className = "round-img";
     imagelem.style = "width: 240px; height: 240px";
 
+    // var divadmin = document.createElement("div");
+    // divadmin.style = "width: 70px; height: 70px; position: absolute; top:10px; right:10px; ";
+    var adminlem = document.createElement("img");
+    adminlem.src = "images/admin.png";
+    adminlem.alt = "";
+    adminlem.style = "width: 50px; height: 50px; position: absolute; top:10px; right:10px;opacity: 0.6 ";
+    var admintext = document.createElement("p");
+    admintext.innerHTML = "Admin" ;
+    admintext.style = "position: absolute; top:63px; right:10px; font-weight: bold;font-family: sans-serif;";
+    // divadmin.appendChild(adminlem);
+    // divadmin.appendChild(admintext);
+    
+
+
     var div2 = document.createElement("div");
+    div2.style = "width: 380px; margin-right:60px"
 
     var status = data["Content"][i]["status"];
     var groupId = data["Content"][i]["id"];
@@ -126,7 +142,7 @@ async function getGroup() {
     aelem.className = "btn btn-primary gr";
     aelem.href = "profile.html?id=" + groupId; //add group id to url
     aelem.innerHTML = "View Group";
-    aelem.style = "width: 140px; margin: 5px";
+    aelem.style = "width: 140px; height: 40px; margin: 5px";
 
     var aelem1 = document.createElement("a");
     aelem1.className = "btn btn-primary gr";
@@ -136,7 +152,7 @@ async function getGroup() {
       aelem1.href = `javascript:joinPublicGroup("${groupId}")`;
     }
     aelem1.innerHTML = "Join Group";
-    aelem1.style = "width: 140px; margin: 5px";
+    aelem1.style = "width: 140px; height: 40px; margin: 5px";
 
     var aelem2 = document.createElement("BUTTON");
     aelem2.className = "btn btn-danger gr";
@@ -144,7 +160,7 @@ async function getGroup() {
     aelem2['data-id'] = groupId;
     console.log(data["Content"][i]);
     aelem2.innerHTML = "Delete Group";
-    aelem2.style = "width: 140px; margin: 5px";
+    aelem2.style = "width: 140px; height: 40px; margin: 5px";
 
     elem.innerHTML = "Group Name: " + groupName;
     div2.appendChild(elem);
@@ -164,6 +180,10 @@ async function getGroup() {
     divelem.appendChild(div2);
     // divelem.firstChild = imagelem;
     divelem.appendChild(imagelem);
+    if(window.localStorage.getItem("current_userId") == data["Content"][i]["admin"].toString()){
+      divelem.appendChild(adminlem);
+      divelem.appendChild(admintext);
+    }
     root.appendChild(divelem);
     console.log(i);
   }
