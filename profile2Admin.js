@@ -229,3 +229,42 @@ function submitForm(e, form) {
     });
 }
 
+function submitForm2(e, form) {
+    e.preventDefault();
+    var groupId=urlParams.get("id");
+    const url="http://127.0.0.1:6969/api/group/id/" + groupId;
+    var new_description = document.getElementById("new_description").value;
+
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        credentials: 'include',
+        body: JSON.stringify({ "new_description": new_description})
+    }).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        if (data["Success"])
+        {
+            document.getElementById("description").innerHTML = new_description;
+            alert(data["Success"]);     
+        }
+
+        if (data["Error"])
+        {
+            alert(data["Error"]);
+        }
+        if (data["Failure"])
+        {
+            alert(data["Failure"]);
+        }
+        //Success code goes here
+        // alert('form submited')
+    }).catch(function (err) {
+        //Failure
+        alert('Error')
+    });
+}
+
