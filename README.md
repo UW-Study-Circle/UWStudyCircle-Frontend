@@ -35,6 +35,8 @@ $ npm run build
 The files will be created in the folder **/dist**.
 
 **2. And then access [http://localhost:8080/](http://localhost:8080/) on your browser (it's setup to open automatically).**
+** Please download and use Firefox version 87.0(64-bit) : https://www.mozilla.org/en-US/firefox/87.0/releasenotes/ **
+
 
 ## Testing
 
