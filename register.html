@@ -99,7 +99,7 @@
                 <script>
                 </script>
             </div>
-            <input type="submit" class="btn btn-primary" value="Register">
+            <input type="submit" class="btn btn-primary" value="Register" onclick="return Validate()">
         </form>
         <p class="my-1">
             Already have an account ? <a href="login.html">Sign In</a>
@@ -117,6 +117,19 @@
         * @return {Object} - Response body from URL that was POSTed to
         */
 
+        
+        function Validate() {
+        var password = document.getElementById("npwd").value;
+        var confirmPassword = document.getElementById("cnpwd").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+        
+        
+        
         async function postFormDataAsJson({ url, formData }) {
             const plainFormData = Object.fromEntries(formData.entries());
             const formDataJsonString = JSON.stringify(plainFormData);
