@@ -1,6 +1,6 @@
-import { myfunction } from "./profiles.js";
-import { getGroup } from "./profiles.js";
-import { confirmDelete } from "./profiles.js";
+import { getGroupInfo } from "./chat.js";
+
+
 
 
 global.fetch = jest.fn(() =>
@@ -114,39 +114,16 @@ beforeEach(() => {
   fetch.mockClear();
 });
 
-test("Check groups rendered", async () => {
+
+test("Check groups info", async () => {
 
     
   
-    const data = await getGroup();
-    expect(data["content"].length).toBe(9);
-    expect(fetch).toHaveBeenCalledTimes(1);
- 
-
-  });
-
-test("Check groups content", async () => {
-
-    
-  
-    const data = await getGroup();
-    var val=data["content"];
-
-    expect(val[1].courseinfo).toBe("cs-354");
+    const data = await getGroupInfo(2);
+    expect(data).toBe(2);
     expect(fetch).toHaveBeenCalledTimes(1);
  
 
   });
 
 
-  test("Check delete groups", async () => {
-
-    
-  
-    const data = await confirmDelete(3);
-    
-    expect(data).toBe("The group is deleted.");
-    expect(fetch).toHaveBeenCalledTimes(1);
- 
-
-  });

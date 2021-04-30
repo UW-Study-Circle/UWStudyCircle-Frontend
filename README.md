@@ -61,18 +61,20 @@ Generate the test coverage report in the command line :
 $ jest --coverage
 ```
 
-Sample output of code coverage tool before adding the test suit:
-
-![alt text](./images/coverage-tool.png)
 
 
-After incrementally expanding the test suit:
 
-![alt text](./images/phase1.png)
+Iteration 2 test coverage report :
 
-![alt text](./images/phase2.png)
 
 ![alt text](./images/final.png)
+
+
+Final test coverage report :
+
+![alt text](./images/coverage_report.png)
+
+
 
 
 

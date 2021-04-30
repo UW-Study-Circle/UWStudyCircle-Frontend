@@ -75,6 +75,7 @@ async function getMemberIds(){
     };
     let response = await fetch(url, fetchOptions);
     let data = await response.json();
+    console.log(data);
     var userIds = [];
     data.forEach(function(member){
         var userId = member["user_id"];

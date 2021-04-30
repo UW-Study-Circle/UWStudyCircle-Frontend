@@ -36,6 +36,7 @@ function myFunction() {
 // }
 
 async function confirmDelete(e) {
+  console.log(e);
   console.log(e.target);
   const groupid = e.target['data-id'];
   console.log(groupid)
